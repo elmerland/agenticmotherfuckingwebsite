@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#111"/>
+  <!-- middle finger -->
+  <rect x="46" y="12" width="36" height="74" rx="18" fill="#c0392b"/>
+  <!-- fist/palm -->
+  <rect x="16" y="64" width="96" height="52" rx="16" fill="#c0392b"/>
+</svg>

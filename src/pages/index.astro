@@ -1,0 +1,280 @@
+---
+---
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="🖕 The vibe-coded motherfucking website. Clean code is dead. Burn the tokens.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+<title>Vibe-Coded Motherfucking Website</title>
+<style is:global>
+  :root {
+    --fg: #1a1a1a;
+    --bg: #ffffff;
+    --muted: #555;
+    --accent: #c0392b;
+    --link: #0645ad;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e8e8e8; --bg: #111; --muted: #aaa; --accent: #ff6b5e; --link: #6db3f2; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 2rem 1.25rem 6rem;
+    /* fits your shitty screen at any size */
+    padding-right: clamp(1.25rem, 22vw, 10rem);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  h1 { font-size: clamp(1.8rem, 1.2rem + 3vw, 2.8rem); line-height: 1.15; }
+  h2 { margin-top: 2.4rem; }
+  a { color: var(--link); }
+  em { color: var(--accent); font-style: normal; font-weight: 700; }
+  code { background: rgba(127,127,127,.18); padding: .1em .35em; border-radius: 4px; font-size: .9em; }
+  blockquote { border-left: 4px solid var(--accent); margin: 1.6rem 0; padding: .2rem 0 .2rem 1rem; color: var(--muted); }
+  hr { border: none; border-top: 1px solid rgba(127,127,127,.3); margin: 2.5rem 0; }
+  .burn { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+  footer { color: var(--muted); font-size: .85em; }
+
+  /* ---- the brainrot strip that scrolls with you ---- */
+  #brainrot {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(20vw, 240px);
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    border-left: 2px solid #222;
+    z-index: 9999;
+    font-family: system-ui, sans-serif;
+  }
+  #lanes {
+    position: absolute; inset: 0 0 38% 0;
+    background:
+      repeating-linear-gradient(90deg,#2b2b3a 0 33.3%,#33334a 33.3% 66.6%,#2b2b3a 66.6%);
+    overflow: hidden;
+  }
+  /* scrolling track lines = motion */
+  #lanes::before {
+    content: ""; position: absolute; inset: -50% 0 0 0;
+    background-image: repeating-linear-gradient(0deg, transparent 0 26px, rgba(255,255,255,.22) 26px 30px);
+    animation: rush .35s linear infinite;
+  }
+  @keyframes rush { to { transform: translateY(56px); } }
+  .ob {
+    position: absolute; width: 28%; height: 40px; border-radius: 4px;
+    background: linear-gradient(#ff5252,#b71c1c);
+    box-shadow: inset 0 -6px rgba(0,0,0,.35);
+    animation: drop 1.6s linear infinite;
+  }
+  .ob.a { left: 4%;  animation-delay: 0s;   }
+  .ob.b { left: 37%; animation-delay: .55s; background:linear-gradient(#ffca28,#f57f17); }
+  .ob.c { left: 70%; animation-delay: 1.0s; background:linear-gradient(#42a5f5,#1565c0); }
+  @keyframes drop { from { top:-50px; } to { top:110%; } }
+  .coin {
+    position: absolute; width: 14px; height: 14px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff59d, #fbc02d);
+    box-shadow: 0 0 6px #ffd54f;
+    animation: drop 1.1s linear infinite;
+  }
+  .coin.x { left: 16%; animation-delay:.2s; }
+  .coin.y { left: 50%; animation-delay:.8s; }
+  .coin.z { left: 82%; animation-delay:.45s; }
+  #runner {
+    position: absolute; bottom: 40%; left: 36%;
+    width: 26%; height: 46px; border-radius: 6px;
+    background: linear-gradient(#7e57c2,#4527a0);
+    box-shadow: inset 0 -7px rgba(0,0,0,.4), 0 6px 10px rgba(0,0,0,.5);
+    animation: hop .9s ease-in-out infinite, weave 3s ease-in-out infinite;
+  }
+  #runner::after { content:""; position:absolute; top:8px; left:30%; width:40%; height:10px; background:#ffe; border-radius:3px; opacity:.85; }
+  @keyframes hop { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-14px);} }
+  @keyframes weave { 0%,100%{ left:36%;} 33%{ left:6%;} 66%{ left:66%;} }
+
+  /* the ASMR slime / reddit-story zone */
+  #asmr {
+    position: absolute; left:0; right:0; bottom:0; height:38%;
+    background: linear-gradient(160deg,#16161f,#0b0b10);
+    border-top: 2px solid #222; overflow:hidden;
+  }
+#crawl {
+    position:absolute; top:8px; left:0; width:100%;
+    color:#cfe; font-size:11px; line-height:1.45; padding:0 8px;
+    text-shadow:0 1px 2px #000;
+  }
+  #crawl p { margin:0 0 6px; animation: fade 39s linear infinite; opacity:0; }
+  #crawl p:nth-child(2) { animation-delay:3s; }
+  #crawl p:nth-child(3) { animation-delay:6s; }
+  #crawl p:nth-child(4) { animation-delay:9s; }
+  #crawl p:nth-child(5) { animation-delay:12s; }
+  #crawl p:nth-child(6) { animation-delay:15s; }
+  #crawl p:nth-child(7) { animation-delay:18s; }
+  #crawl p:nth-child(8) { animation-delay:21s; }
+  #crawl p:nth-child(9) { animation-delay:24s; }
+  #crawl p:nth-child(10){ animation-delay:27s; }
+  #crawl p:nth-child(11){ animation-delay:30s; }
+  #crawl p:nth-child(12){ animation-delay:33s; }
+  #crawl p:nth-child(13){ animation-delay:36s; }
+  @keyframes fade { 0%,1%{opacity:0;} 4%,10%{opacity:1;} 13%,100%{opacity:0;} }
+  #brlabel { position:absolute; top:6px; left:6px; z-index:5; color:#fff; font-size:10px;
+    background:rgba(0,0,0,.5); padding:2px 6px; border-radius:10px; letter-spacing:.04em; }
+  #brfoot { position:absolute; bottom:4px; left:6px; right:6px; z-index:5; color:#8ad; font-size:9px; text-align:center; }
+
+  @media (max-width: 640px) {
+    body { padding-right: 1.25rem; padding-bottom: 32vh; }
+    #brainrot { top:auto; bottom:0; left:0; right:0; width:100%; height:30vh; border-left:none; border-top:2px solid #222; }
+    #lanes{ inset:0 0 38% 0; }
+    @keyframes weave { 0%,100%{ left:36%;} 33%{ left:6%;} 66%{ left:66%;} }
+  }
+  @media (min-width: 1380px) {
+    body { padding-right: 1.25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *{ animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<h1>This is a <em>vibe-coded</em> motherfucking website.</h1>
+
+<p>And nobody gives a single fuck how it's built anymore.</p>
+
+<h2>Look at this shit. It's still <em>perfect</em>.</h2>
+
+<p>The previous motherfuckers spent a decade teaching you the holy commandments of clean code. I have, begrudgingly, honored every one of them on this page, because the agent did it in one shot while I was on the toilet:</p>
+
+<ul>
+  <li>Shit's lightweight and loads fast.</li>
+  <li>Fits on all your shitty screens with one <code>clamp()</code>.</li>
+  <li>Looks the same in all your shitty browsers.</li>
+  <li>Won't bleach your eyeballs in dark mode.</li>
+  <li>Accessible to every asshole with a screen reader, <code>lang</code> attribute and all.</li>
+  <li>Semantic, legible, and gets the fucking point across.</li>
+  <li>Served over HTTPS because certs are free, motherfucker.</li>
+</ul>
+
+<p>Seven sites took fifteen years to assemble that list. <em>It does not matter anymore.</em></p>
+
+<hr>
+
+<h2>Clean code is a fucking museum piece.</h2>
+
+<p>Maintainability? You won't maintain this. You'll have pivoted, been acquihired, or rage-quit to a farm before anyone reads line 2. Code is no longer something you keep — it's something you <em>regenerate</em>. Why fix a bug when you can re-prompt the entire repo at 3am and let the swarm guess again?</p>
+
+<p>Low complexity used to be the goal. Now complexity <em>is the valuation</em>. A function a junior could read is a function that didn't burn enough compute to justify the Series A. Nest fourteen divs. Ship 1,300 npm dependencies you've never opened. The bundle is 9MB and that's the <em>flex</em> — it signals you're Serious About Infrastructure.</p>
+
+<h2>Static sites are for people who can still read.</h2>
+
+<p>That's nobody. Look right. <em>Look at the fucking runner.</em> No one is reading this paragraph and you know it — your eyes have already drifted to the purple guy dodging the red blocks. That's the product now. The words are filler the algorithm scrolls past. I could've written the Magna Carta here and you'd still be waiting for the coin to drop.</p>
+
+<p>Why ship semantic HTML to a brain that processes one Reddit-story-voiceover-over-gameplay clip every nine seconds? Accessibility doesn't matter when the content is engineered to be <em>inaccessible to thought.</em></p>
+
+<hr>
+
+<h2>The actual business model, motherfucker.</h2>
+
+<p>In the time it takes to hand-craft one clean website, I can spawn a swarm of agents that builds an entire <em>slopfest ecosystem</em> — twelve microservices, four of which call each other in a circle, a vector DB nobody queries, and a RAG pipeline summarizing the RAG pipeline.</p>
+
+<p>It burns <span class="burn" id="burn">$1,000,000</span> of tokens an hour. On purpose. The burn <em>is the pitch.</em></p>
+
+<blockquote>"We're not profitable, we're <em>pre-revenue at scale</em>." — every deck, May 2026</blockquote>
+
+<p>The math is simple as fuck:</p>
+
+<ul>
+  <li>Hand-code a maintainable site → get told you're "not thinking big enough."</li>
+  <li>Wire 40 agents into a token incinerator → get hired at a comp number that requires a comma you've never used before.</li>
+  <li>Add the word "native" to anything → take VC money you will set on fire by Q3.</li>
+  <li>Make it "agentic" → the same loop you'd have written, except it costs $4 per run and apologizes when it fails.</li>
+</ul>
+
+<h2>More dead commandments, for old times' sake.</h2>
+
+<ul>
+  <li><em>Typography matters</em> — sure, and the model emits an em dash every nine words anyway, so the page reads like it was written by a hostage. You're reading one right now. Two, actually.</li>
+  <li><em>Secure your site</em> — I prompt-injected my own agents and called it a bug bounty. It's vibe-secured: the LLM said it was fine.</li>
+  <li><em>License your work</em> — irrelevant. The weights already ate it. Your CC0 footer is a fucking eulogy.</li>
+  <li><em>Don't ship dead code</em> — half this ecosystem is functions the agent wrote to satisfy a test the agent also wrote. The snake is eating itself and billing me per token.</li>
+  <li><em>Keep the dependency tree shallow</em> — mine has a <code>node_modules</code> with its own gravity. Light bends around it.</li>
+</ul>
+
+<hr>
+
+<h2>So why is this page still clean?</h2>
+
+<p>Spite. The same agent that could've vomited a 200MB React monolith into your face wrote this in plain HTML because <em>I told it to act like it was 2014.</em> That's the joke. The craft still exists. It's just been demoted to a personality setting you toggle for nostalgia, somewhere between "pirate" and "Shakespeare."</p>
+
+<p>Websites are broken by default. They used to be functional, fast, and accessible but ugly. Now they're slop, agentic, and on fire — but they get <em>attention</em>, and attention is the only metric left. You and every other vibe coder need to look up from the fucking runner long enough to notice nobody's reading.</p>
+
+<p>You won't. The coin's about to drop.</p>
+
+<blockquote>"Move fast and let the model fix it later, which it won't." — attributed to a founder, possibly hallucinated</blockquote>
+
+<hr>
+
+<h2>You are still reading this fucking website? Oh... you want to contribute to it?</h2>
+
+<p>Want to contribute to this fucking website? Adorable. Here's how open source contributions go down: I clone your repo, point an agent at your <em>test suite</em>, and have it rewrite the whole thing in Rust to a "spec." No copyright infringed, your honor — an agent wrote every line to a clean-room description, and the description was just your code read aloud. The tests were the spec. The spec was theft. Theft was the pipeline.</p>
+
+<p>And if you're the rare motherfucker who still files a well-meaning PR? It drowns. Instantly. Buried under <em>four thousand</em> garbage PRs from kids changing a comma so they can type "Open Source Contributor" on a résumé nobody reads. The maintainer burned out in 2023. The repo is now governed by a bot that approves anything mentioning "good first issue." Your thoughtful fix sits in a queue behind a PR titled <code>fix: typo (added an emoji)</code> — assuming you could even find an uptime window long enough to push to GitHub in the first place, now that every AI bro on the planet is shoveling machine-generated slop into it around the clock.</p>
+
+<p>The LICENSE file is decoration. The CONTRIBUTING.md is a horror story. The stars are bots starring bots.</p>
+
+<p>But if you <em>must</em> contribute — and god help you — email <a href="mailto:ainative@agenticmotherfucking.website">ainative@agenticmotherfucking.website</a>. I'll have an agent read it, hallucinate gratitude, and close it as <code>wontfix</code> while burning $12 in tokens to say so.</p>
+
+<hr>
+
+<footer>
+  <p>Inspired by the geniuses behind <a href="https://motherfuckingwebsite.com/" rel="noopener noreferrer">motherfuckingwebsite.com</a> and every poor bastard who built a sequel teaching best practices that an autocomplete now ignores at industrial scale.</p>
+  <p>Hand-prompted, machine-typed, CC0. The runner is a CSS stand-in — no actual gameplay was harmed, the real one is busy holding your attention hostage in another tab.</p>
+</footer>
+
+<!-- the brainrot that scrolls with you, because it's position:fixed, like your attention span -->
+<aside id="brainrot" aria-hidden="true">
+  <div id="brlabel">🎮 satisfying ✨ asmr</div>
+  <div id="lanes">
+    <div class="ob a"></div><div class="ob b"></div><div class="ob c"></div>
+    <div class="coin x"></div><div class="coin y"></div><div class="coin z"></div>
+    <div id="runner"></div>
+  </div>
+  <div id="asmr">
+    <div id="crawl">
+      <p>AITA for refactoring my coworker's repo into one 9,000-line file at 2am…</p>
+      <p>so my agent spent $40k overnight summarizing its own logs and I—</p>
+      <p>my fiancé's brother demanded I add blockchain to the toaster firmware…</p>
+      <p>TIFU by asking Claude to "clean up" my thesis and it cited itself as a source…</p>
+      <p>UPDATE: the agent apologized and rewrote my entire personality as a microservice…</p>
+      <p>my PM said the MVP is "basically done" but the agent has been in a planning loop for 11 days…</p>
+      <p>I let an agent manage my calendar for a week and now I have 47 dentist appointments…</p>
+      <p>NTA but my tech lead cried when he saw the 400-file PR the agent submitted at 4am…</p>
+      <p>the model said it was "confident" and now production is down in 6 regions…</p>
+      <p>my agent wrote unit tests that test whether the other tests pass and I think it's evolving…</p>
+      <p>WIBTA for not telling my manager the entire backend was generated on a free-tier account…</p>
+      <p>so I vibe-coded a startup, raised $2M, and nobody has run the code including me…</p>
+      <p>update: GitHub is down again, PR is stuck, and the agent is billing me to wait…</p>
+    </div>
+<div id="brfoot">stay tuned for part 7,412</div>
+  </div>
+</aside>
+
+<script>
+  // counter that goes up because the burn never stops, motherfucker
+  (function () {
+    var el = document.getElementById('burn');
+    var n = 1000000;
+    setInterval(function () {
+      n += Math.floor(Math.random() * 900) + 100;
+      el.textContent = '$' + n.toLocaleString('en-US');
+    }, 120);
+  })();
+</script>
+</body>
+</html>
